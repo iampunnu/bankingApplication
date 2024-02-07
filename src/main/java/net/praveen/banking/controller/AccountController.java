@@ -29,6 +29,4 @@ public class AccountController {
         return new ResponseEntity<>(accountDto1, HttpStatus.CREATED);
     }
 
-
-
 }
