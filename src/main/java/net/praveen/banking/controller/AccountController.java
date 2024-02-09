@@ -24,8 +24,13 @@ public class AccountController {
         return new ResponseEntity<>(accountDto1, HttpStatus.CREATED);
     }
     @GetMapping
-    public ResponseEntity<List<AccountResponseDto>> addAccount(){
+    public ResponseEntity<List<AccountResponseDto>> getAllAccount(){
        List< AccountResponseDto >accountDto1=accountService.getAllAccount();
+        return new ResponseEntity<>(accountDto1, HttpStatus.CREATED);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<AccountResponseDto> getAccountById(@PathVariable String id) throws InterruptedException {
+        AccountResponseDto accountDto1=accountService.getAccountById(id);
         return new ResponseEntity<>(accountDto1, HttpStatus.CREATED);
     }
 

@@ -8,5 +8,7 @@ import java.util.List;
 public interface AccountService {
     AccountResponseDto createAccount(AccountRequestDto accountDto);
     List<AccountResponseDto> getAllAccount( );
+    AccountResponseDto getAccountById( String id ) throws InterruptedException;
+
 
 }

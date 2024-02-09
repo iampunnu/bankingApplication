@@ -3,13 +3,17 @@ package net.praveen.banking.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @Entity
-public class Account {
+public class Account implements Serializable {
+    private static final long serialVersionUID = 1307525040224585678L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

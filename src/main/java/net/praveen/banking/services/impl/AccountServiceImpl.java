@@ -7,6 +7,7 @@ import net.praveen.banking.mapper.AccountMapper;
 import net.praveen.banking.repository.AccountRepository;
 import net.praveen.banking.services.AccountService;
 import net.praveen.banking.services.GenerateAccountNo;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -49,6 +50,14 @@ public class AccountServiceImpl implements AccountService {
         }
 
         return accountResponseDtos;
+    }
+
+    @Override
+    @Cacheable(cacheNames = "account", key = "#id")
+    public AccountResponseDto getAccountById(String id) throws InterruptedException {
+        System.out.println("inside get by id" );
+        Thread.sleep(2000);
+        return accountMapper.mapToAccountResponse(accountRepository.findByAccountNumber(id));
     }
 
 }

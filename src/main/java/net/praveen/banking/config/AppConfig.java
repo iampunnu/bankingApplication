@@ -1,18 +1,12 @@
 package net.praveen.banking.config;
-
 import net.praveen.banking.entity.Student;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.cache.CacheManagerCustomizer;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
-import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
-import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;
 
@@ -40,5 +34,20 @@ public class AppConfig {
         empTemplate.setKeySerializer(new StringRedisSerializer());
         empTemplate.setValueSerializer(new StringRedisSerializer());
         return empTemplate;
+    }
+
+    @Bean
+    CacheManagerCustomizer<ConcurrentMapCacheManager> customizer() {
+        return new ConcurrentCustomizer();
+    }
+
+    class ConcurrentCustomizer implements CacheManagerCustomizer<ConcurrentMapCacheManager> {
+
+        @Override
+        public void customize(ConcurrentMapCacheManager cacheManager) {
+            cacheManager.setAllowNullValues(false);
+            //cacheManager.setStoreByValue(true);
+            System.out.println("customizer invoked!!");
+        }
     }
 }
