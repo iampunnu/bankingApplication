@@ -39,6 +39,7 @@ public class AppConfig {
     @Bean
     CacheManagerCustomizer<ConcurrentMapCacheManager> customizer() {
         return new ConcurrentCustomizer();
+
     }
 
     class ConcurrentCustomizer implements CacheManagerCustomizer<ConcurrentMapCacheManager> {
