@@ -5,6 +5,7 @@ import net.praveen.banking.dto.AccountResponseDto;
 import net.praveen.banking.services.AccountService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,8 @@ public class AccountController {
         return new ResponseEntity<>(accountDto1, HttpStatus.CREATED);
     }
     @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+
     public ResponseEntity<List<AccountResponseDto>> getAllAccount(){
        List< AccountResponseDto >accountDto1=accountService.getAllAccount();
         return new ResponseEntity<>(accountDto1, HttpStatus.CREATED);
@@ -33,5 +36,4 @@ public class AccountController {
         AccountResponseDto accountDto1=accountService.getAccountById(id);
         return new ResponseEntity<>(accountDto1, HttpStatus.CREATED);
     }
-
 }

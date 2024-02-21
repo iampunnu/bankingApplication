@@ -13,4 +13,5 @@ public class UserResponseDto implements Serializable {
     private String name;
     private String email;
     private String address;
+    private String role;
 }

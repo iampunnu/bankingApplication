@@ -22,8 +22,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<Transaction> showAllForUser(String id) {
-        Account a=accountRepository.findByAccountNumber(id);
-        return transactionRepository.findBySourceAccount(a);
+    public List<Transaction> showAllTransaction() {
+        return transactionRepository.findAll();
     }
 }

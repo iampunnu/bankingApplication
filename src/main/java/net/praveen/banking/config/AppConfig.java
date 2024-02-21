@@ -1,5 +1,6 @@
 package net.praveen.banking.config;
 import net.praveen.banking.entity.Student;
+import net.praveen.banking.entity.User;
 import org.springframework.boot.autoconfigure.cache.CacheManagerCustomizer;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
@@ -49,6 +50,10 @@ public class AppConfig {
             cacheManager.setAllowNullValues(false);
             //cacheManager.setStoreByValue(true);
             System.out.println("customizer invoked!!");
+        }
+        @Bean
+        public User createUser(){
+            return new User();
         }
     }
 }

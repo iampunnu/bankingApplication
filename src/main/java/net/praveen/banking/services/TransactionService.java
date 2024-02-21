@@ -9,5 +9,5 @@ import java.util.List;
 public interface TransactionService {
 
     public void save(Transaction t);
-    List<Transaction > showAllForUser(String account);
+    List<Transaction > showAllTransaction();
 }
