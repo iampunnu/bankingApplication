@@ -1,11 +1,7 @@
 package net.praveen.banking.controller;
-
-import net.praveen.banking.dto.AccountRequestDto;
-import net.praveen.banking.dto.AccountResponseDto;
 import net.praveen.banking.entity.Transaction;
 import net.praveen.banking.entity.TransactionType;
 import net.praveen.banking.repository.AccountRepository;
-import net.praveen.banking.services.AccountService;
 import net.praveen.banking.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,8 +23,6 @@ public class TransactionController {
     TransactionController(TransactionService accountService){
         this.accountService=accountService;
     }
-
-
     @PostMapping
     public ResponseEntity<String> addAccount(@RequestBody Map<String,Object> accountDto){
         Transaction t=new Transaction();
